@@ -9,6 +9,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
 </head>
+<style>
+    /* Style for the alert */
+    .alert {
+        padding: 20px;
+        background-color: #4CAF50; /* Green */
+        color: white;
+        opacity: 1;
+        transition: opacity 0.6s; /* 600ms to fade out */
+        margin-bottom: 15px;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        border-radius: 5px;
+    }
+
+    /* Style for the close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
+</style>
 
 <body>
 
@@ -81,15 +114,19 @@
     </section>
 
 <section id="form-details" class="section-p1">
-    <form action="">
+    <form action="/contact" method="post">
         <span>Leave a message</span>
         <h2>We love to hear from you</h2>
-        <input type="text" placeholder="Your Name">
-        <input type="text" placeholder="E-mail">
-        <input type="text" placeholder="Subject">
-        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message...."></textarea>
+        <input type="text" name="name" placeholder="Your Name">
+        <input type="text" name="email" placeholder="E-mail">
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message...."></textarea>
         <button class="normal">Submit</button>
     </form>
+    <div id="alert" class="alert" style="display:none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Success!</strong> Form submission received!
+    </div>
     <div class="people">
         <div>
             <img src="images/p.1.png" alt="">
@@ -177,6 +214,19 @@
 
     </section>
     <script src="Manin.js"></script>
+    <script>
+        // Check for the 'submitted' query parameter and show an alert if it exists
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('submitted')) {
+            const alertBox = document.getElementById('alert');
+            alertBox.style.display = 'block';
+            // Optional: Auto hide the alert after a few seconds
+            setTimeout(() => {
+                alertBox.style.opacity = '0';
+                setTimeout(() => { alertBox.style.display = 'none'; }, 600);
+            }, 3000);
+        }
+    </script>
 </body>
 
 </html>
