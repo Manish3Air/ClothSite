@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .form-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-container form input[type="text"],
+        .form-container form input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container form button:hover {
+            background-color: #45a049;
+        }
+
+        .error-msg {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Register</h1>
+        <% if (errors.length > 0) { %>
+            <ul>
+                <% errors.forEach(function(error) { %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+        <form action="/register" method="POST">
+            <input type="text" name="username" placeholder="Username" value="<%= typeof username != 'undefined' ? username : '' %>">
+            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="password2" placeholder="Confirm Password">
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1279,6 +1279,7 @@ footer .copyright {
     display: none;
   }
 }
+
 @media (max-width:820px) {
 
   #header .search-box {
@@ -1570,3 +1571,54 @@ footer .copyright {
     padding: 20px;
   }
 }
+
+
+
+/* Add your existing CSS styles */
+/* User Menu */
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+  /* Adjust color as needed */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+
+}
+
+.dropdown-menu a {
+  color: #088178;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dropdown-menu a:hover {
+  background-color: #088178;
+  color: white;
+  border-radius: 8px;
+}
+
+/* Show the dropdown menu on hover or click
+        .user-menu:hover .dropdown-menu,
+        .user-menu:focus-within .dropdown-menu {
+            display: block;
+        } */
