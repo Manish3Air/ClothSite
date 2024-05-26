@@ -2,12 +2,33 @@ const express = require('express')
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const flash = require('connect-flash');
 const app = express()
 const port = 3000
 
 
 //Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
+
+
+// Set the public directory to serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set the views directory
+app.set('views', path.join(__dirname, 'views'));
+// Set EJS as templating engine
+app.set('view engine', 'ejs');
+
+// Routes
+app.use('/', require('./routes/auth'));
 
 
 // Connect to MongoDB
@@ -30,16 +51,33 @@ const formSchema = new mongoose.Schema({
 
 const Form = mongoose.model('Form', formSchema);
 
-// Serve static files from the 'frontend' directory
-app.use(express.static(path.join(__dirname, '../frontend')));
-app.use('/images', express.static(path.join(__dirname, '../images')));
-app.use('/banner', express.static(path.join(__dirname, '../Banner')));
 
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'MainP.html'));
-  });
+  // Check if user is logged in
+  const user = req.session.user; // Assuming user information is stored in session
+
+  // Render the homepage and pass the user object to the template
+  res.render('Main', { user: user });
+});
+
+// Assuming this is the route handler for rendering pages
+app.get('/:page', (req, res) => {
+  const { page } = req.params;
+  const user = req.session.user; // Assuming user information is stored in session
+  
+  // Check if the requested page exists
+  const validPages = ['shop', 'about', 'blog', 'cart', 'contact', 'sproduct'];
+  if (!validPages.includes(page)) {
+      return res.status(404).send('Page not found');
+  }
+  
+  // Render the requested page and pass the user object to the template
+  res.render(page, { user: user });
+});
+
+
 
 
 app.post("/contact", (req,res)=>{

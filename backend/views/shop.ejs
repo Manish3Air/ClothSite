@@ -13,34 +13,70 @@
 <body>
 
     <section id="header">
-        <!-- <a href="MainP.html" ><img src="images/logo.png"  height="70" alt="" class="logo"></a> -->
+        <!-- <a href="MainP.html"><img src="images/logo.png" height="70" alt="" class="logo"></a> -->
         <h1><b style="color: red;">C</b>ara.</h1>
-        
-        <div class="search-box" >
+
+        <!-- <div class="search-box">
             <input class="search-txt" type="text" name="" placeholder="Type to search">
             <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
-        </div>
+        </div> -->
         <div>
             <ul id="Navbar">
-
-                <li ><a href="MainP.html">Home</a></li>
-
-                <li ><a class="active" href="Shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="Contact.html">Contact</a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a href="/">Home</a></li>
+                <li><a class="active" href="shop">Shop</a></li>
+                <li><a href="blog">Blog</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="contact">Contact</a></li>
+                <li id="lg-bag"><a href="cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <div>
-                <a href="#" id="close" ><i class="fas fa-times"></i></a>
+                    <a href="#" id="close"><i class="fas fa-times"></i></a>
+                </div>
             </ul>
         </div>
 
         <div id="mobile">
-            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="cart"><i class="fa-solid fa-cart-shopping"></i></a>
             <i id="bar" class="fas fa-outdent"></i>
         </div>
 
+        <!-- User Icon and Dropdown Menu -->
+        <!-- <div class="user-menu">
+            <a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a>
+            <div class="dropdown-menu">
+                <a href="login">Login</a>
+                <a href="register">Register</a>
+            </div>
+        </div> -->
+        <div class="user-menu">
+            <a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a>
+            <div class="dropdown-menu">
+                <% if (user) { %>
+                    <a href="/logout">Logout</a>
+                <% } else { %>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                <% } %>
+            </div>
+        </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userIcon = document.querySelector('.user-icon');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            userIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!userIcon.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+        });
+    </script>
 
     <section id="page-header">
 
@@ -52,7 +88,7 @@
     <section id="product1" class="section-p1">
 
         <div class="pro-container">
-            <div class="pro" onclick="window.location.href='sproduct.html';">
+            <div class="pro" onclick="window.location.href='sproduct';">
                 <img src="images/p.f1.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
