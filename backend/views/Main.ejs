@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/cara-high-resolution-logo-transparent.png">
     <title>Clothing Website</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
@@ -11,11 +12,13 @@
 </head>
 
 
+
+
 <body>
 
     <section id="header">
         <!-- <a href="MainP.html"><img src="images/logo.png" height="70" alt="" class="logo"></a> -->
-        <h1><b style="color: red;">C</b>ara.</h1>
+        <h1><a href="/"><img src="./images/cara-high-resolution-logo-transparent.png" alt="logo" height="45px"></a></h1>
 
         <!-- <div class="search-box">
             <input class="search-txt" type="text" name="" placeholder="Type to search">
@@ -23,7 +26,11 @@
         </div> -->
         <div>
             <ul id="Navbar">
-                <li><a class="active" href="Main">Home</a></li>
+                <div class="search-container">
+                    <input type="text" class="search-bar">
+                    <div class="placeholder active">Search...</div>
+                  </div>
+                <li><a class="active" href="/">Home</a></li>
                 <li><a href="shop">Shop</a></li>
                 <li><a href="blog">Blog</a></li>
                 <li><a href="about">About</a></li>
@@ -52,10 +59,10 @@
             <a href="#" class="user-icon"><i class="fa-solid fa-user"></i></a>
             <div class="dropdown-menu">
                 <% if (user) { %>
-                    <a href="/logout">Logout</a>
+                    <a href="/logout"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Logout</a>
                 <% } else { %>
-                    <a href="/login">Login</a>
-                    <a href="/register">Register</a>
+                    <a href="/login"><i class="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;Login</a>
+                    <a href="/register"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Register</a>
                 <% } %>
             </div>
         </div>
@@ -506,7 +513,7 @@
     <footer class="section-p1">
         <div class="col">
             <!-- <img class="logo" src="/images/logo.png" alt=""> -->
-            <h1><b style="color: red;">C</b>ara.</h1>
+            <h1><a href="/"><img src="./images/cara-high-resolution-logo-transparent.png" alt="logo" height="45px"></a></h1>
             <h4>Contact</h4>
             <p><strong>Address:</strong> 562 Wellington Road,Street 32, San Fransico</p>
             <p><strong>Phone:</strong> +01 2222 365 /(+91) 01 2345 678</p>
@@ -525,11 +532,11 @@
 
         <div class="col">
             <h4>About</h4>
-            <a href="#">About Us</a>
+            <a href="/about">About Us</a>
             <a href="#">Delivery Information</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms & Conditions</a>
-            <a href="#">Contact Us</a>
+            <a href="/contact">Contact Us</a>
         </div>
 
 
@@ -562,6 +569,63 @@
 
     </section>
     <script src="/Manin.js"></script>
+    <script>
+        let i = 0;
+
+        const phrases = [
+  'Search for trending styles...', 'Discover the latest trends...', 'Find what\'s hot now...',
+  'Look for summer dresses...', 'Find your perfect jeans...', 'Search for winter coats...',
+  'Explore elegant evening wear...', 'Browse casual tees...', 'Shop stylish accessories...',
+  'Get inspired by new arrivals...', 'Find your next outfit...', 'Discover must-have looks...',
+  'Search top brands...', 'Explore designer collections...', 'Find exclusive deals...',
+  'Outfits for every occasion...', 'Find wedding guest dresses...', 'Shop party wear...',
+  'What are you looking for today?', 'Find your style...', 'Search by your favorite brand...'
+];
+
+const randomizePlaceholder = () => {
+  const placeholderContainer = document.querySelector('.placeholder');
+
+  i = randomNum(i, phrases.length);
+  const newPhrase = phrases[i];
+
+  // Create a new placeholder div for the incoming phrase
+  const newPlaceholder = document.createElement('div');
+  newPlaceholder.textContent = newPhrase;
+  newPlaceholder.classList.add('placeholder', 'incoming');
+
+  // Append the new placeholder to the container
+  placeholderContainer.parentElement.appendChild(newPlaceholder);
+
+  // Trigger the outgoing animation on the current placeholder
+  placeholderContainer.classList.remove('active');
+  placeholderContainer.classList.add('outgoing');
+
+  // Trigger the incoming animation on the new placeholder
+  setTimeout(() => {
+    newPlaceholder.classList.remove('incoming');
+    newPlaceholder.classList.add('active');
+  }, 20); // Small delay to ensure the CSS animation is triggered
+
+  // Remove the outgoing placeholder from the DOM after the animation
+  setTimeout(() => {
+    placeholderContainer.parentElement.removeChild(placeholderContainer);
+  }, 400); // Match this with CSS transition duration
+}
+
+const randomNum = (num, max) => {
+  let j = Math.floor(Math.random() * max);
+
+  // Ensure different number every time
+  if (num === j) {
+    return randomNum(i, max);
+  } else {
+    return j;
+  }
+}
+
+setInterval(randomizePlaceholder, 1500); 
+
+    </script>
 </body>
 
 </html>

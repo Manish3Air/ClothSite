@@ -99,7 +99,7 @@ app.post("/contact", (req,res)=>{
 
     // Save the form entry to the database
     formData.save()
-        .then(() => res.redirect('/contact.html?submitted=true'))
+        .then(() => res.redirect('/contact?submitted=true'))
         
         .catch(err => {
             console.error('Error saving to database', err);

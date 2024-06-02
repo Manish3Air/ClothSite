@@ -2,9 +2,12 @@
 <html>
 <head>
     <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #f1f1f1;
             margin: 0;
             padding: 0;
@@ -22,48 +25,98 @@
             width: 300px;
             max-width: 100%;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
         }
 
         .form-container h1 {
             margin-bottom: 20px;
-            color: #333;
+            color: #4285f4;
         }
 
         .form-container form input[type="text"],
         .form-container form input[type="password"] {
             width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 15px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-size: 16px;
         }
 
         .form-container form button {
             width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
+            padding: 12px;
+            background-color: #4285f4;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s ease;
         }
 
         .form-container form button:hover {
-            background-color: #45a049;
+            background-color: #2d68d7;
+        }
+
+        .social-login {
+            margin: 20px 0;
+        }
+
+        .social-login button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-login button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .google-login {
+            background-color: #db4437;
+            color: white;
+        }
+
+        .google-login:hover {
+            background-color: #c33d30;
+        }
+
+        .facebook-login {
+            background-color: #3b5998;
+            color: white;
+        }
+
+        .facebook-login:hover {
+            background-color: #334b8d;
         }
 
         .error-msg {
             color: red;
             margin-top: 10px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h1>Register</h1>
+        <h1><a href="/"><img src="./images/cara-high-resolution-logo-transparent.png" alt="logo" height="45px"></a></h1>
         <% if (errors.length > 0) { %>
-            <ul>
+            <ul class="error-msg">
                 <% errors.forEach(function(error) { %>
                     <li><%= error.msg %></li>
                 <% }) %>
@@ -75,6 +128,17 @@
             <input type="password" name="password2" placeholder="Confirm Password">
             <button type="submit">Register</button>
         </form>
+        <div class="social-login">
+            <button class="google-login">
+                <i class="fa-brands fa-google"></i>
+                &nbsp;&nbsp;Register with Google
+            </button>
+            <button class="facebook-login">
+                <i class="fa-brands fa-facebook"></i>
+                &nbsp;&nbsp;Register with Facebook
+            </button>
+            <p>Already have an account ? <a href="/login" style="text-decoration: none;">Login</a></p>
+        </div>
     </div>
 </body>
 </html>
