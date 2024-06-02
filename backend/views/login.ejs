@@ -2,7 +2,10 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f1f1f1;
@@ -60,6 +63,48 @@
             background-color: #2d68d7;
         }
 
+        .login-container .social-login {
+            margin: 20px 0;
+        }
+
+        .login-container .social-login button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container .social-login button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .login-container .google-login {
+            background-color: #db4437;
+            color: white;
+        }
+
+        .login-container .google-login:hover {
+            background-color: #c33d30;
+        }
+
+        .login-container .facebook-login {
+            background-color: #3b5998;
+            color: white;
+        }
+
+        .login-container .facebook-login:hover {
+            background-color: #334b8d;
+        }
+
         .error-msg {
             color: red;
             margin-top: 10px;
@@ -69,7 +114,8 @@
 </head>
 <body>
     <div class="login-container">
-        <h1>Login</h1>
+        <h1><a href="/"><img src="./images/cara-high-resolution-logo-transparent.png" alt="logo" height="45px"></a></h1>
+        <!-- Show error message if exists -->
         <% if (typeof error_msg != 'undefined') { %>
             <p class="error-msg"><%= error_msg %></p>
         <% } %>
@@ -78,6 +124,17 @@
             <input type="password" name="password" placeholder="Password">
             <button type="submit">Login</button>
         </form>
+        <div class="social-login">
+            <button class="google-login">
+                <i class="fa-brands fa-google"></i>
+                &nbsp;&nbsp;Login with Google
+            </button>
+            <button class="facebook-login">
+                <i class="fa-brands fa-facebook"></i>
+                &nbsp;&nbsp;Login with Facebook
+            </button>
+            <p>Didn't have an account ? <a href="/register"style="text-decoration: none;">Register</a></p>
+        </div>
     </div>
 </body>
 </html>
